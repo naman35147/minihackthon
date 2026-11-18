@@ -1,0 +1,104 @@
+#include <stdio.h>
+
+int main()
+{
+    int choice, qty;
+    int burger = 0, pizza = 0, sandwich = 0, fries = 0, drink = 0;
+    float subtotal, discount = 0, finalBill;
+
+    do
+    {
+        printf("\n----- SMART CANTEEN -----\n");
+        printf("1. Burger      Rs.80\n");
+        printf("2. Pizza       Rs.120\n");
+        printf("3. Sandwich    Rs.60\n");
+        printf("4. Fries       Rs.70\n");
+        printf("5. Cold Drink  Rs.40\n");
+        printf("6. Generate Bill\n");
+
+        printf("Enter Choice: ");
+        scanf("%d", &choice);
+
+        if(choice >= 1 && choice <= 5)
+        {
+            printf("Enter Quantity: ");
+            scanf("%d", &qty);
+
+            if(qty <= 0)
+            {
+                printf("Invalid Quantity!\n");
+                continue;
+            }
+        }
+
+        switch(choice)
+        {
+            case 1:
+                burger += qty;
+                break;
+
+            case 2:
+                pizza += qty;
+                break;
+
+            case 3:
+                sandwich += qty;
+                break;
+
+            case 4:
+                fries += qty;
+                break;
+
+            case 5:
+                drink += qty;
+                break;
+
+            case 6:
+                printf("\nGenerating Bill...\n");
+                break;
+
+            default:
+                printf("Invalid Choice!\n");
+        }
+
+    } while(choice != 6);
+
+    subtotal = (burger * 80) +
+               (pizza * 120) +
+               (sandwich * 60) +
+               (fries * 70) +
+               (drink * 40);
+
+    if(subtotal > 500)
+    {
+        discount = subtotal * 0.10;
+    }
+
+    finalBill = subtotal - discount;
+
+    printf("\n===== FINAL BILL =====\n");
+
+    if(burger > 0)
+        printf("Burger x %d = Rs.%d\n", burger, burger * 80);
+
+    if(pizza > 0)
+        printf("Pizza x %d = Rs.%d\n", pizza, pizza * 120);
+
+    if(sandwich > 0)
+        printf("Sandwich x %d = Rs.%d\n", sandwich, sandwich * 60);
+
+    if(fries > 0)
+        printf("Fries x %d = Rs.%d\n", fries, fries * 70);
+
+    if(drink > 0)
+        printf("Cold Drink x %d = Rs.%d\n", drink, drink * 40);
+
+    printf("----------------------\n");
+    printf("Subtotal   : Rs. %.2f\n", subtotal);
+    printf("Discount   : Rs. %.2f\n", discount);
+    printf("Final Bill : Rs. %.2f\n", finalBill);
+
+    printf("\nThank You!\n");
+
+    return 0;
+}
